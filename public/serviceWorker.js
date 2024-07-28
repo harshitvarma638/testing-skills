@@ -3,8 +3,9 @@ self.addEventListener('push', function(event) {
     
     const data = event.data.json();
     const options = {
-        body: 'Yay it works.',
-        icon: './bell.jpg',
+        body: data.body,
+        icon: './bell.png',
+        image: './images.jpeg',
     };
     
     event.waitUntil(self.registration.showNotification(data.title, options));

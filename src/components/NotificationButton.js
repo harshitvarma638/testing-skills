@@ -3,6 +3,7 @@ require('dotenv').config();
 import {useState,useEffect} from 'react';
 
 
+
 export default function NotificationButton() {
     const [permission, setPermission] = useState(null);
     const [subscription, setSubscription] = useState(null);
@@ -77,8 +78,9 @@ export default function NotificationButton() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: 'Notify!',
-                body: 'Hope you liked it!',
+                title: 'Notification!!',
+                body: 'Iron man welcomes you!!',
+                image: './images.jpeg',
                 subscription
             }),
             
@@ -101,8 +103,8 @@ export default function NotificationButton() {
     }
 
     return (
-        <button onClick={sendNotification}>
-            Push Notification
+        <button onClick={sendNotification} className='push-button'>
+            Send Notification
         </button>
     );
 }

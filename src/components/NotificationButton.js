@@ -1,10 +1,11 @@
 "use client";
 require('dotenv').config();
 import {useState,useEffect} from 'react';
+import Image from '../../public/images.jpeg';
 
 
 
-export default function NotificationButton() {
+export default function NotificationButton({onNotificationSent}) {
     const [permission, setPermission] = useState(null);
     const [subscription, setSubscription] = useState(null);
 
@@ -72,20 +73,24 @@ export default function NotificationButton() {
 
     const sendNotification = async () => {
         console.log('send notification');
-        await fetch('/api/push-notifications/send',{
+        const response = await fetch('/api/push-notifications/send',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 title: 'Notification!!',
-                body: 'Iron man welcomes you!!',
-                image: './images.jpeg',
-                subscription
+                body: 'Hope you liked it.',
+                image: Image,
+                subscription,
             }),
             
         });
-        
+        if(response.ok){
+            if(onNotificationSent){
+                onNotificationSent();
+            }
+        }
     };
 
     const urlBase64toint8Array = (base64String) => {

@@ -6,6 +6,8 @@ self.addEventListener('push', function(event) {
         body: data.body,
         icon: './bell.png',
         image: './images.jpeg',
+        sound: './sound.mp3',
+        vibrate: [200, 100, 200]
     };
     
     event.waitUntil(self.registration.showNotification(data.title, options));
